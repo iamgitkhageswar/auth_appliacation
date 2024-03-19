@@ -1,8 +1,21 @@
 {
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express.js": "^1.0.0",
-    "mongoose": "^7.4.1"
-  }
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.4.1",
+    "nodemon": "^3.1.0",
+    "whatwg-url": "^14.0.0"
+  },
+  "name": "auth_app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

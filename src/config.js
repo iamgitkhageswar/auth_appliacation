@@ -1,19 +1,23 @@
-const mongoose = require('mongoose');
-const connect = mongoose.connect("mongodb://localhost:27017/Login-tut");
-
-// Check database connected or not
-connect.then(() => {
+const mongoose = require('mongoose')
+mongoose.connect("mongodb://localhost:27017/Auth_app")
+.then(() => {
     console.log("Database Connected Successfully");
 })
-.catch(() => {
-    console.log("Database cannot be Connected");
-})
+.catch((error) => {
+    console.error("Database connection error:", error); 
+});
 
-// Create Schema
+
 const Loginschema = new mongoose.Schema({
     name: {
-        type:String,
+        type: String,
         required: true
+    },
+    email:{
+        type: String,
+        required: true,
+        lowercase: true,
+        unique: true
     },
     password: {
         type: String,
@@ -21,7 +25,22 @@ const Loginschema = new mongoose.Schema({
     }
 });
 
-// collection part
-const collection = new mongoose.model("users", Loginschema);
+// // Define methods on the schema
+// Loginschema.methods.generateAccessToken = function() {
+//     return 
+
+// Loginschema.methods.generateRefreshToken = function() {
+//     return jwt.sign(
+//         {
+//             _id: this._id
+//         },
+//         process.env.REFRESH_TOKEN_SECRET,
+//         {
+//             expiresIn: process.env.REFRESH_TOKEN_EXPIRY
+//         }
+//     );
+// };
+
+const collection = mongoose.model("users", Loginschema);
 
 module.exports = collection;
